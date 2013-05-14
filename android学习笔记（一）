@@ -1,1 +1,58 @@
-1.
+一. Android手机平台的发展与现状
+二. Android手机平台的架构与特性
+    http://www.360doc.com/content/09/1202/14/496343_10205835.shtml
+三. 搭建Android应用的开发环境
+    http://developer.android.com/sdk/index.html
+四. 管理Android虚拟设备
+五. 使用Android模拟器
+六. 测试工具DDMS用法
+    DDMS：Dalvik Debug Monitor Service
+七. 使用ADB工具复制文件、安装APK等
+八. DX、AAPT工具的用法
+九. 在Eclipse中使用ADT开发Android应用
+    1. 创建1个Android项目
+    2. 在XML布局文件中定义应用程序的用户界面
+    3. 在JAVA代码中编写业务实现
+十. 手动开发Android应用
+十一. 掌握Android应用的结构
+    http://developer.android.com/reference/android/Manifest.html
+    ① 必需：
+        1. res目录：存放项目的各种资源文件。layout-界面布局文件,values-各种XML格式的资源文件(字符串资源文件-strings.xml,颜色资源文件-colors.xml,尺寸资源文件-dimens.xml), drawable存放各种分辨率的图片文件。
+        2. src目录: 普通的、保存java源文件的目录。
+        3. AndroidManifest.xml文件是Android项目的系统清单文件，用于控制应用的名称、图标、访问权限等整体属性。
+    ② R.java:
+        是由aapt工具根据应用中的资源文件来自动生成的，可以理解为Android应用的资源字典。
+        所有界面布局资源对应于layout内部类，所有字符串资源对应与string内部类，所有标识符资源对应于id内部类。
+        每个具体的资源项对应于内部类的一个public static final int类型的field.
+    ③ res:
+        @<资源对应的内部类的类名>/<资源项的名称> @string/app_name
+    ④ AndroidManifest.xml：
+        通常包含：
+            应用程序的包名，作为Android应用的唯一标识
+            应用程序包含的组件，如Activity、Service、ContentProvider、BroadcastRecevier。
+            应用程序兼容的最低版本。
+            应用程序使用系统所需的权限声明。
+            其他程序访问改程序所需的权限声明。
+十二. 自动生成Android应用的清单文件
+十三. Android应用的res目录
+十四. Android应用的程序权限
+十五. Android应用的四大组件
+    ①  Activity是应用中负责与用户交互的组件，通过SetContentView(View)来显示指定组件。View组件是所有UI控件、容器控件的基类（应用中用户实实在在看到的部分）。View组件需要放到容器组件中，或者用Activity显示。如：
+        LinearLayout layout = new LinearLayout(this);
+        setContentView(layout);
+
+        setContentView(R.layout.main);
+        如果应用需要多个用户界面，应用会包含多个Activity，多个Activity组成Activity栈，当前活动的Activity位于栈顶。
+    ② Service:
+        通常位于后台运行，一般不需要和用户交互，需要集成service基类。一个Service组件被运行起来，它将拥有自己独立的声明周期，通常用于为其他组件提供后台服务或监控其他组件的运行状态。
+    ③ BroadcastReceiver:
+        广播消息接收器，监听的事件源是其他组件。当其他组件通过SendBroadcast()、SendStickyBroadcast()或SendOrderedBroadcast()方法发送广播消息时，如该BroadcastReceiver也对该消息感兴趣，onReceive(Context context, Intent intent)方法将会被触发。
+    ④ ContentProvider:
+        Android应用之间需要实现实时的数据交换，如发短信需要从通讯录读取联系人的数据。Android系统为这种跨应用的数据交换提供了这种标准。一个程序通过ContentProvider来暴露自己的数据，另一个通过ContentResolver来方位数据。
+    ⑤ Intent和IntentFilter:
+        不同组件的通信载体。如启动应用中另一个Activity-startActivity(Intent intent)；启动另一个Service-startService(Intent intent);触发一个BroadcastReceiver-SendBroadcast(Intent intent)。
+        Intent封装了当前组件需要启动或触发的目标组件的信息。显式Intent明确指明需要启动或触发的组件的类名，隐式Intent指定需要启动或触发的组件应满足怎样的条件（靠IntentFilter来实现）。
+十六. Android应用程序进行签名
+    若在同一台手机上安装两个包名相同的应用，后面的应用就会覆盖前面的应用。
+    签名的作用：确定发布者的身份；确保应用的完整性。
+
